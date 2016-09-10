@@ -1,0 +1,89 @@
+{% extends "base/pages/index.html" %}
+{% load extras %}
+
+{% block sections %}
+{% if form %}
+{% if form_page %}
+<form action="{%url form_page %}" method="post">{% csrf_token %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3>索検フォーム</h3>
+            {% if form.subject.errors %}
+            <ol>
+            {% for error in form.subject.errors %}
+                <li><strong>{{ error|escape }}</strong></li>
+            {% endfor %}
+            </ol>
+            {% endif %}
+            {% block form %}
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                <label>{{ field.label_tag }}</label>
+                {% if field|fieldtype == "ClearableFileInput" %}
+                {{ field }}
+                {% else %}
+                {{ field|addcss:"form-control" }}
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+</form>
+{% endif %}
+{% endif %}
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <p>{{page_obj.paginator.count}} 個のデータが登録されています</p>
+        {% block add %} {% endblock %}
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            {% block th %} {% endblock %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for model in models %}
+            <tr>
+            {% block td %} {% endblock %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <div class="panel-footer">
+        <nav aria-label="Page navigation">
+            <ul class="pager">
+                {% if page_obj.has_previous %}
+                <li class="previous">
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                        <span aria-hidden="true">&larr;</span> Older
+                    </a>
+                </li>
+                {% else %}
+                <li class="previous disabled">
+                    <a href="#"><span aria-hidden="true">&larr;</span> Older</a>
+                </li>
+                {% endif %}
+                <li>{{page_obj}}</li>
+                {% if page_obj.has_next %}
+                 <li class="next">
+                     <a href="?page={{ page_obj.next_page_number }}">
+                         Newer <span aria-hidden="true">&rarr;</span>
+                     </a>
+                 </li>
+                {% else %}
+                    <li class="next disabled">
+                        <a href="#">Newer <span aria-hidden="true">&rarr;</span></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+{% block js %} {% endblock %}

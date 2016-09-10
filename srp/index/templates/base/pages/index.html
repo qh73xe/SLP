@@ -1,0 +1,32 @@
+<!--
+base/index.html
+
+これは、JEESD のインデックス系の表示用のテンプレートファイルです。
+インデックス系のページを作成する場合このテンプレートを読み込んで、
+sections ブロックを記述してください
+-->
+{% extends "base/main.html" %}
+{% block title %}glovic DB{% endblock %}
+{% block content %}
+
+<!-- Jumbotron -->
+<div class="jumbotron">
+    <div class="container">
+        {% block Jumbotron %}
+            <h1>{{headline.title}}</h1>
+            {% for body in headline.bodies %}
+                <p>{{body}}</p>
+            {% endfor %}
+        {% endblock %}
+    </div>
+</div>
+<!-- END jumbotron -->
+
+<!-- Content -->
+<div class="container">
+    {% block sections %} {% endblock %}
+</div>
+<!-- End Content -->
+{% endblock %}
+
+{% block js %} {% endblock %}

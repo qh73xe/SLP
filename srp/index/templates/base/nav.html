@@ -1,0 +1,28 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{%url 'index'%}">SRP WEB</a>
+  </div>
+  <div id="navbar" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li {% ifequal view_group "domein-create" %}class="active"{% endifequal %} >
+        <a href="">キャラクターを選択</a>
+      </li>
+      <li {% ifequal view_group "domein-create" %}class="active"{% endifequal %} >
+        <a href="">キャラクターを作る</a>
+      </li>
+      <li {% ifequal view_group "domein-create" %}class="active"{% endifequal %} >
+        <a href="">辞書登録をする</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    </ul>
+  </div><!--/.nav-collapse -->
+ </div>
+</nav>
