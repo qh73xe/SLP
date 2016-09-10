@@ -10,6 +10,9 @@ _TOOLS/
 # sqlite3
 *.sqlite3
 
+# pyenv
+.python-version
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
