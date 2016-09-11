@@ -12,7 +12,7 @@ class TalkForm(forms.Form):
         label='発話速度',
         required=False,
         widget=NumberInput(
-            attrs={'type':'range', 'value': '0', 'min': '-1', 'max': '1', 'step': '0.1' }
+            attrs={'type':'range', 'value': '0', 'min': '-2', 'max': '2', 'step': '0.1' }
         )
     )
     half_tone = forms.FloatField(
@@ -56,7 +56,7 @@ class TalkForm(forms.Form):
 
         speech_speed = self.cleaned_data['speech_speed']
         if speech_speed:
-            speech_speed = speech_speed + 1.0
+            speech_speed = speech_speed + 2.0
         else:
             speech_speed = None
 
