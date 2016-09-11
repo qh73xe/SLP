@@ -1,0 +1,27 @@
+{% extends "base/pages/index.html" %}
+{% load extras %}
+{% block sections %}
+<div class="row">
+  {% for roid in object_list %}
+  <div class="col-md-4">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Roid: {{roid.name}}
+      </div>
+      <div class="panel-body">
+          <img class="img-thumbnail", src="{{roid.figure.url}}">
+      </div>
+      <div class="panel-footer">
+        <a class="btn btn-primary" href="{%url 'roid_detail' roid.pk%}" role="button">音声合成</a>
+        <a class="btn btn-success" href="{%url 'roid_update' roid.pk%}" role="button">設定変更</a>
+      </div>
+    </div>
+
+  </div>
+  {% empty %}
+  <div class="alert alert-danger" role="alert">まだ ROID は登録されていません</div>
+  {% endfor %}
+</div>
+{% endblock %}
+{% block js %} {% endblock %}

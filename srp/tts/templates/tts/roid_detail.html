@@ -1,0 +1,109 @@
+{% extends "base/pages/index.html" %}
+{% load extras %}
+
+{% block css %}
+<style type="text/css">
+  .balloon {
+    background-color:#bed3ca;
+    border-radius:5px;
+    min-height:30vh;
+    height:auto !important;
+    height:30vh;
+    position:relative;
+    padding: 5% 5% 5% 5%;
+  }
+
+  .balloon:after {
+    border:10px solid transparent;
+    border-right-color:#bed3ca;
+    border-left-width:0;
+    left:-10px;
+    content:"";
+    display:block;
+    top:30px;
+    position:absolute;
+    width:0;
+  }
+</style>
+{% endblock %}
+{% block sections %}
+  <!-- Roid -->
+  <div class="panel panel-primary">
+    <div class="panel-heading">音声合成 ({{object.name}})</div>
+    <div class="panel-body">
+      <div class="col-md-4">
+        <img class="img-thumbnail" src="{{object.figure.url}}">
+        </br></br>
+        <audio controls>
+          <source src="{{wav}}" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div class="col-md-8">
+        {% if form.subject.errors %}
+          <ol>
+            {% for error in form.subject.errors %}
+              <li><strong>{{ error|escape }}</strong></li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+        <div class="balloon">
+          <h3>読み上げたい音声を登録してね</h3>
+          <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="form-group">
+              {{ form.text.errors }}
+              <label>{{form.text.label}}:</label>
+              {{ form.text|addcss:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.speech_speed.errors }}
+              <label>{{form.speech_speed.label}}:</label>
+              <div class="raw">
+                <div class="col-md-2"><p>遅い<p></div>
+                <div class="col-md-8">{{ form.speech_speed }}</div>
+                <div class="col-md-2"><p>早い<p></div>
+              </div>
+            </div>
+            <div class="form-group">
+              {{ form.half_tone.errors }}
+              <label>{{form.half_tone.label}}:</label>
+              <div class="raw">
+                <div class="col-md-2"><p>低い<p></div>
+                <div class="col-md-8">{{ form.half_tone }}</div>
+                <div class="col-md-2"><p>高い<p></div>
+              </div>
+            </div>
+            <div class="form-group">
+              {{ form.log_F0.errors }}
+              <label>{{form.log_F0.label}}:</label>
+              <div class="raw">
+                <div class="col-md-2"><p>平坦<p></div>
+                <div class="col-md-8">{{ form.log_F0 }}</div>
+                <div class="col-md-2"><p>ハッキリ<p></div>
+              </div>
+            </div>
+            <div class="form-group">
+              {{ form.all_pass.errors }}
+              <label>{{form.all_pass.label}}:</label>
+              <div class="raw">
+                <div class="col-md-2"><p>マイナス<p></div>
+                <div class="col-md-8">{{ form.all_pass }}</div>
+                <div class="col-md-2"><p>プラス<p></div>
+              </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="音声を作る">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <a href="{{wav}}" download="{{object.name}}" class="btn btn-primary btn-lg">
+        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+        Download
+      </a>
+    </div>
+  </div>
+  <!-- End Roid -->
+{% endblock %}
+
+{% block js %} {% endblock %}

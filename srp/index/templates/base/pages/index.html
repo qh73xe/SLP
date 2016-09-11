@@ -6,27 +6,27 @@ base/index.html
 sections ブロックを記述してください
 -->
 {% extends "base/main.html" %}
-{% block title %}glovic DB{% endblock %}
+{% block title %}{{headline.title}}{% endblock %}
+{% block css %} {% endblock %}
 {% block content %}
-
-<!-- Jumbotron -->
-<div class="jumbotron">
+  <!-- Jumbotron -->
+  <div class="jumbotron">
     <div class="container">
-        {% block Jumbotron %}
-            <h1>{{headline.title}}</h1>
-            {% for body in headline.bodies %}
-                <p>{{body}}</p>
-            {% endfor %}
-        {% endblock %}
+      {% block Jumbotron %}
+          <h1>{{headline.title}}</h1>
+          {% for body in headline.bodies %}
+              <p>{{body}}</p>
+          {% endfor %}
+      {% endblock %}
     </div>
-</div>
-<!-- END jumbotron -->
+  </div>
+  <!-- END jumbotron -->
 
-<!-- Content -->
-<div class="container">
+  <!-- Content -->
+  <div class="container">
     {% block sections %} {% endblock %}
-</div>
-<!-- End Content -->
+  </div>
+  <!-- End Content -->
 {% endblock %}
 
 {% block js %} {% endblock %}

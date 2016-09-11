@@ -7,6 +7,11 @@ _TOOLS/
 *.wav
 *.WAV
 
+# media
+srp/media/figure
+srp/media/wav
+srp/media/voices
+
 # sqlite3
 *.sqlite3
 

@@ -19,22 +19,25 @@
     height:auto !important;
     height:100vh;
   }
+  input[type=range]::-moz-range-track {
+    background-color: green;
+  }
   </style>
+
+  {% block css %} {% endblock %}
   </head>
   <body>
     {% block nav %}
-    {% include "base/nav.html" %}
+      {% include "base/nav.html" %}
     {% endblock %}
-
-    {% block content %} {% endblock %}
-
+    {% block content %}{% endblock %}
     {% block foot %}
-    <hr>
-    <footer class="footer">
+      <hr>
+      <footer class="footer">
         <div class="container">
           <p>&copy; 2016 qh73xe@jaist</p>
         </div>
-    </footer>
+      </footer>
     {% endblock %}
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->

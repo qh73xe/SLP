@@ -4,35 +4,34 @@
 <!-- Content -->
 {% block sections %}
 <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h3>編集フォーム</h3>
-            {% if form.subject.errors %}
-            <ol>
-            {% for error in form.subject.errors %}
-                <li><strong>{{ error|escape }}</strong></li>
-            {% endfor %}
-            </ol>
-            {% endif %}
-
-            {% block form %}
-            {% for field in form %}
-            <div class="form-group">
-                {{ field.errors }}
-                <label>{{ field.label_tag }}</label>
-                {% if field|fieldtype == "ClearableFileInput" %}
-                {{ field }}
-                {% else %}
-                {{ field|addcss:"form-control" }}
-                {% endif %}
-            </div>
-            {% endfor %}
-            {% endblock %}
-        </div>
-        <div class="panel-footer">
-                <input class="btn btn-primary" type="submit" value="Save" />
-        </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>編集フォーム</h3>
+      {% if form.subject.errors %}
+      <ol>
+      {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+      {% endfor %}
+      </ol>
+      {% endif %}
+      {% block form %}
+      {% for field in form %}
+      <div class="form-group">
+        {{ field.errors }}
+        <label>{{ field.label_tag }}</label>
+        {% if field|fieldtype == "ClearableFileInput" %}
+          {{ field }}
+        {% else %}
+          {{ field|addcss:"form-control" }}
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% endblock %}
     </div>
+    <div class="panel-footer">
+      <input class="btn btn-primary" type="submit" value="Save" />
+    </div>
+  </div>
 </form>
 {% endblock %}
 <!-- End Content -->
