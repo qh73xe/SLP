@@ -22,11 +22,12 @@ class OpenJTalk(object):
         from srp.settings import DIC_DIR
         from tts.models import OpenJTalk
 
-        if OpenJTalk.objects.get(pk=1):
+        try:
             openjtalk = OpenJTalk.objects.get(pk=1)
-            self.openjtalk = openjtalk.openJTalk
-        else:
+        except OpenJTalk.DoesNotExist:
             self.openjtalk = 'open_jtalk'
+        else:
+            self.openjtalk = openjtalk.openJTalk
         self.dic = DIC_DIR
         self.set_wpath()
 
