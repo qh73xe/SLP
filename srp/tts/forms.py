@@ -19,21 +19,21 @@ class TalkForm(forms.Form):
         label='高さ',
         required=False,
         widget=NumberInput(
-            attrs={'type':'range', 'value': '0', 'min': '-1', 'max': '1', 'step': '0.1' }
+            attrs={'type':'range', 'value': '0', 'min': '-2', 'max': '2', 'step': '0.1' }
         )
     )
     log_F0 = forms.FloatField(
         label='抑揚',
         required=False,
         widget=NumberInput(
-            attrs={'type':'range', 'value': '0', 'min': '-1', 'max': '1', 'step': '0.1' }
+            attrs={'type':'range', 'value': '0', 'min': '-2', 'max': '2', 'step': '0.1' }
         )
     )
     all_pass = forms.FloatField(
         label='位相変換',
         required=False,
         widget=NumberInput(
-            attrs={'type':'range', 'value': '0', 'min': '-1', 'max': '1', 'step': '0.1' }
+            attrs={'type':'range', 'value': '0', 'min': '-2', 'max': '2', 'step': '0.1' }
         )
     )
 
@@ -66,7 +66,7 @@ class TalkForm(forms.Form):
 
         log_F0 = self.cleaned_data['log_F0']
         if log_F0:
-            log_F0 = log_F0 + 1.0
+            log_F0 = log_F0 + 2.0
         else:
             log_F0 = None
 
