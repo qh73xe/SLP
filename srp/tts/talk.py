@@ -52,7 +52,11 @@ class OpenJTalk(object):
     def set_voiceModel(self, voiceModel):
         self.voiceModel = voiceModel
 
-    def run(self, text, log=False, speech_speed=None, half_tone=None, log_F0=None, all_pass=None):
+    def run(
+            self, text, log=False,
+            speech_speed=None, half_tone=None,
+            log_F0=None, spectrum=None, all_pass=None
+        ):
         """
         OpenJTalk を実行します。
 
@@ -85,6 +89,8 @@ class OpenJTalk(object):
             jtalk.extend(['-fm', str(half_tone)])
         if log_F0:
             jtalk.extend(['-jf', str(log_F0)])
+        if spectrum:
+            jtalk.extend(['-jm', str(spectrum)])
         if all_pass:
             jtalk.extend(['-a', str(all_pass)])
 

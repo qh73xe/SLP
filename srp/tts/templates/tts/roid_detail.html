@@ -83,6 +83,15 @@
               </div>
             </div>
             <div class="form-group">
+              {{ form.pectrums.errors }}
+              <label>{{form.spectrum.label}}:</label>
+              <div class="raw">
+                <div class="col-md-2"><p>クリア<p></div>
+                <div class="col-md-8">{{ form.spectrum }}</div>
+                <div class="col-md-2"><p>ノイジー<p></div>
+              </div>
+            </div>
+            <div class="form-group">
               {{ form.all_pass.errors }}
               <label>{{form.all_pass.label}}:</label>
               <div class="raw">

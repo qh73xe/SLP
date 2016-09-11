@@ -29,14 +29,20 @@ class TalkForm(forms.Form):
             attrs={'type':'range', 'value': '0', 'min': '-2', 'max': '2', 'step': '0.1' }
         )
     )
+    spectrum = forms.FloatField(
+        label='かすれ具合',
+        required=False,
+        widget=NumberInput(
+            attrs={'type':'range', 'value': '0', 'min': '-1', 'max': '1', 'step': '0.1' }
+        )
+    )
     all_pass = forms.FloatField(
         label='位相変換',
         required=False,
         widget=NumberInput(
-            attrs={'type':'range', 'value': '0', 'min': '-2', 'max': '2', 'step': '0.1' }
+            attrs={'type':'range', 'value': '0', 'min': '-1', 'max': '1', 'step': '0.1' }
         )
     )
-
     def get_cleaned_datas(self):
         """
         バリデーションが通った後に OpenJtalk 用の引き数に加工します。
@@ -63,12 +69,20 @@ class TalkForm(forms.Form):
         half_tone = self.cleaned_data['half_tone']
         if not half_tone:
             half_tone = None
+        else:
+            half_tone = half_tone * 10.0
 
         log_F0 = self.cleaned_data['log_F0']
         if log_F0:
-            log_F0 = log_F0 + 2.0
+            log_F0 = (log_F0 + 2.0) * 10.0
         else:
             log_F0 = None
+
+        spectrum = self.cleaned_data['spectrum']
+        if spectrum:
+            spectrum = (spectrum + 1.0) * 0.1
+        else:
+            spectrum = None
 
         all_pass = self.cleaned_data['all_pass']
         if all_pass:
@@ -76,4 +90,4 @@ class TalkForm(forms.Form):
         else:
             all_pass = None
 
-        return text, log, speech_speed, half_tone, log_F0, all_pass
+        return text, log, speech_speed, half_tone, log_F0, spectrum, all_pass

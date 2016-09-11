@@ -38,9 +38,13 @@ class Roid(models.Model):
         upload_to='figure/%Y/%m/%d/'
     )
 
-    def talk(self, text, log=False, speech_speed=None, half_tone=None, log_F0=None, all_pass=None):
+    def talk(
+            self, text, log=False,
+             speech_speed=None, half_tone=None,
+            log_F0=None, spectrum=None, all_pass=None
+        ):
         from .talk import OpenJTalk
         jt = OpenJTalk()
         jt.set_voiceModel(self.voiceModel.path)
-        jt.run(text, log, speech_speed, half_tone, log_F0, all_pass)
+        jt.run(text, log, speech_speed, half_tone, log_F0, spectrum, all_pass)
         self.jt = jt
