@@ -88,6 +88,7 @@ class OpenJTalk(object):
         if all_pass:
             jtalk.extend(['-a', str(all_pass)])
 
+        print(' '.join(jtalk))
         proc_echo = Popen(echo, stdout=PIPE)
         proc_jtalk = Popen(jtalk, stdin=proc_echo.stdout, stdout=PIPE)
         proc_echo.stdout.close()
